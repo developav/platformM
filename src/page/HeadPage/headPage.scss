@@ -1,0 +1,121 @@
+.grid__home-group {
+    display: grid;
+    grid-template-rows: 2fr 1fr; /* Левая часть — текст, правая — изображение */
+    gap: 16px;
+    align-items: start;
+    display: grid;
+    grid-template-rows: auto auto 20%;
+    gap: 16px; /* Отступы между элементами */
+    align-items: center;
+}
+.home{
+    &__container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 20px;
+    }
+    &__group {
+        &-charact {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+        }
+        &-title {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        &-button{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5%;
+        }
+        &-img{
+            position: relative;
+            width: 100%; /* Фиксированная ширина карточки */
+            height: 556px; /* Фиксированная высота карточки */
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+        &-img img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Заполняет контейнер без искажений */
+            display: block;
+        }
+    }
+    
+    &__head-title {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: rgba(255, 255, 255, 1);
+    }
+    &__description {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 32px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    &__raiting {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: fit-content;
+        color: white;
+        padding: 5px 10px; 
+    }
+    &__raiting svg {
+        margin-right: 5px;
+    }
+    &__genre {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    &__year {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    &__runtime {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    &__play {
+        background-color: rgba(103, 165, 235, 1);
+        border-radius: 28px;
+        padding: 16px 48px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 18px;
+        font-weight: bold;
+    }
+    &__about {
+        background-color: rgba(57, 59, 60, 1);
+        border-radius: 28px;
+        padding: 16px 48px;
+        color: rgba(255, 255, 255, 1);
+        font-size: 18px;
+        font-weight: bold;
+    }
+    &__favorites {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 28px;
+        max-width: 68px;
+        padding: 16px 24px;
+        background-color: rgba(51, 51, 51, 1);
+    }
+    &__refresh{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 28px;
+        max-width: 68px;
+        padding: 16px 24px;
+        background-color: rgba(51, 51, 51, 1); 
+    }
+
+
+}
