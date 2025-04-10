@@ -1,0 +1,41 @@
+// Переменные
+$border-color: #333;
+$padding-base: 1rem;
+$font-bold: 600;
+
+.movie-details{
+  &__heading {
+    font-weight: $font-bold;
+    font-size: 2.4em;
+    margin-bottom: $padding-base;
+    padding-bottom: 0.5rem;
+    color: #FFFFFF;
+  }
+
+  &__list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    width: 35%;
+    border-bottom: 1px solid $border-color, 30%;
+
+    &:last-child {
+      border-bottom: none;
+    }
+    &-label {
+      font-weight: $font-bold;
+      flex: 1;
+      max-width: fit-content;
+      color: #FFFFFF;
+    }
+    &-dashed {
+      width: 56%;
+      border-bottom: 1px dashed #FFFFFF;
+    }
+  }
+  &__list-item-value {
+    flex: 1;
+    text-align: right;
+    color: #FFFFFF;
+    }
+}

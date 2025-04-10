@@ -1,0 +1,43 @@
+.content {
+    flex: 1;
+}
+.genre{
+    &-container {
+        color: white;
+        text-align: center;
+    }
+    &-title {
+        text-align: justify;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    &-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 40px;
+        justify-items: center;
+    }
+    &-card {
+        width: 100%;
+        background: #111;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s;
+        box-shadow: 0px 0px 35px 1px rgba(255, 255, 255, 0.33);
+        &:hover {
+            transform: scale(1.03);
+          }
+    }
+    &-image {
+        width: 100%;
+        height: fit-content;
+        object-fit: cover;
+    }
+    &-label {
+        padding: 10px;
+        background: #000;
+        color: white;
+        font-weight: bold;
+    }
+}

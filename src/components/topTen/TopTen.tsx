@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTop10Movies, setLoading, setError } from '../../slice/headMovieSlice';
 import { useNavigate } from 'react-router-dom';
-import './TopTen.scss'; // Подключаем стили для карточек
-import '../../index.css'
+import './TopTen.scss';
+import '../../index.css';
 
 const Top10Movies = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { top10Movies, loading, error } = useSelector((state: any) => state.movie);
 
-  // Получаем топ-10 фильмов
-  const fetchTop10Movies = () => {
+  // Оптимизированная функция загрузки фильмов
+  const fetchTop10Movies = useCallback(() => {
+    if (top10Movies.length) return; // Если данные уже загружены, не делать повторный запрос
+
     dispatch(setLoading(true));
     dispatch(setError(null));
 
@@ -24,40 +26,48 @@ const Top10Movies = () => {
       })
       .then((data) => {
         dispatch(setTop10Movies(data));
+        dispatch(setError(null)); // Сброс ошибки, если запрос успешен
       })
       .catch((error) => {
-        dispatch(setError(error.message));
+        dispatch(setError(error.message || 'Произошла ошибка'));
       })
       .finally(() => {
         dispatch(setLoading(false));
       });
-  };
+  }, [dispatch, top10Movies.length]);
 
   useEffect(() => {
     fetchTop10Movies();
-  }, []);
+  }, [fetchTop10Movies]);
 
   const handleMovieDetailsClick = (movieId: string) => {
-    navigate(`/movie-details/${movieId}`); // Переход на страницу с деталями фильма
+    navigate(`/movie/${movieId}`);
   };
 
   return (
     <div className="container">
-      <h2>Топ-10 фильмов</h2>
+      <h2 className="movie__head">Топ-10 фильмов</h2>
       {loading && <p>Загрузка...</p>}
-      {error && <p>Ошибка: {error}</p>}
-      <ul className="movie-list">
-        {top10Movies.length > 0 ? (
-          top10Movies.map((movie: any, index) => (
+      {error && <p className="error-message">Ошибка: {error}</p>}
+
+      {top10Movies.length > 0 ? (
+        <ul className="movie-list">
+          {top10Movies.map((movie: any, index) => (
             <li key={movie.id} className="movie-list__item">
-              <img  onClick={() => handleMovieDetailsClick(movie.id)} src={movie.posterUrl} alt={movie.title} className="movie-list__item-image" />
-              <span className="movie-list__item-count">{index + 1}</span>
+              <div className="movie-list__item-count">{index + 1}</div>
+              <img
+                onClick={() => handleMovieDetailsClick(movie.id)}
+                src={movie.posterUrl || '/placeholder.jpg'}
+                alt={movie.title || 'Название недоступно'}
+                className="movie-list__item-image"
+              />
+              
             </li>
-          ))
-        ) : (
-          <p>Фильмы не загружены</p>
-        )}
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        !loading && <p>Фильмы не загружены</p>
+      )}
     </div>
   );
 };

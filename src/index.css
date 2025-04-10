@@ -29,7 +29,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(#000000,#272424B2,#2787F5E5,#A393F5E5);
+  background: 
+  linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) 0%, rgba(163, 147, 245, 0.18) 100%),
+  linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
 }
 
 h1 {
@@ -61,12 +63,25 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 #root {
-  max-width: 1280px;
+  min-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 .container {
   width: 1280px;
   margin: 0 auto;
+}
+
+@media (max-width:1300px) {
+  #root {
+    min-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 }
 
 @media (prefers-color-scheme: light) {

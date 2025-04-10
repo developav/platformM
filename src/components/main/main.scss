@@ -8,10 +8,13 @@
     gap: 16px; /* Отступы между элементами */
     align-items: center;
 }
+.content {
+    flex: 1;
+}
 .home{
     &__container {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 50% 48%;
         gap: 20px;
     }
     &__group {
