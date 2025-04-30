@@ -1,0 +1,47 @@
+.content {
+    flex: 1;
+}
+.genre-films-container {
+    color: white;
+        text-align: center;
+}
+.genre-title {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s linear;
+    &:hover {
+        color: #B4A9FF;
+    }
+    svg path{
+        transition: fill 0.3s linear;
+        &:hover {
+            fill: #B4A9FF;
+        }
+    }
+}
+.films{
+    &-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 40px;
+        justify-items: center;
+    }
+    &-card {
+        width: 100%;
+        background: #111;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s;
+        box-shadow: 0px 0px 35px 1px rgba(255, 255, 255, 0.33);
+        &:hover {
+            transform: scale(1.03);
+          }
+        &-img{
+            width: 100%;
+            height: fit-content;
+            object-fit: cover;
+        }
+    }
+}

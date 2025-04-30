@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGenreMovies, setLoading, setError } from '../../slice/headMovieSlice';
 import './genre.scss';
@@ -57,6 +58,7 @@ const genreOrder = [
 
 const Genres = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, error, genreMovies } = useSelector((state: any) => state.movie);
 
   const yourToken = "frontdeveloper";
@@ -81,7 +83,6 @@ const Genres = () => {
         return response.json();
       })
       .then(data => {
-        console.log("Received genres data:", data);  // Логируем ответ от API
         dispatch(setGenreMovies(data));
       })
       .catch(error => {
@@ -95,12 +96,14 @@ const Genres = () => {
   useEffect(() => {
     fetchGenres();
   }, [fetchGenres]);
+
   const handleShowMore = () => {
     setVisibleGenres(prev => prev + 8)
   }
 
-  console.log("Genres from Redux:", genreMovies);  // Логируем данные из Redux
-
+  const handleClick = (genre: string) => {
+    navigate(`/movie/genre/${genre}`);
+  };
   const sortedGenres = genreMovies.map((genre:string)=> ({
     genre, 
     order: genreOrder.indexOf(genre),
@@ -115,9 +118,9 @@ const Genres = () => {
       {error && <p className="error-message">Ошибка: {error}</p>}
       <div className="genre-grid">
         {sortedGenres.slice(0, visibleGenres).map(({genre}) => (
-          <div key={genre} className="genre-card">
-            <img src={genreImages[genre]} alt={genre} className="genre-image" />
-            <div className="genre-label">{genreMapping[genre] || genre}</div>
+          <div key={genre} className="genre-card" onClick={()=> handleClick(genre)}>
+              <img src={genreImages[genre]} alt={genre} className="genre-image" />
+              <div className="genre-label">{genreMapping[genre] || genre}</div>
           </div>
         ))}
       </div>

@@ -80,6 +80,12 @@ $menu-bg: rgba(20, 30, 48, 0.95);
     align-items: flex-end;
     justify-content: flex-end;
   }
+  &__user {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
 
   // Бургер-меню
   &__burger {
@@ -129,6 +135,20 @@ $menu-bg: rgba(20, 30, 48, 0.95);
 }
 
 // Адаптивность
+@media (max-width:1300px) {
+  .navbar {
+    &__custom {
+      flex: 2;
+  }
+  }
+}
+@media (max-width:1023px) {
+  .navbar {
+    &__custom {
+      flex: 1;
+  }
+  }
+}
 @media (max-width: 768px) {
   .navbar {
     &__links {

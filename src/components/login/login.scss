@@ -1,0 +1,39 @@
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .input.error {
+    border-color: red;
+  }
+  
+  button {
+    padding: 10px;
+    margin-top: 10px;
+    background: #4e6eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .switch-mode {
+    margin-top: 15px;
+    text-align: center;
+  
+    span {
+      color: #4e6eff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
