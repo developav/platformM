@@ -18,7 +18,7 @@ export default function Navigation() {
         });
         if (response.ok) {
           const data = await response.json();
-          setUserName(data.surname); // если структура другая — уточни
+          setUserName(data.surname); 
         }
       } catch (err) {
         console.error("Ошибка загрузки профиля", err);
@@ -57,7 +57,7 @@ export default function Navigation() {
           {userName ? (
             <div className="navbar__user">
               <span className="navbar__username">{userName}</span>
-              <button className="navbar__entry" onClick={handleLogout}>Выйти</button>
+              {/* <button className="navbar__entry" onClick={handleLogout}>Выйти</button> */}
             </div>
           ) : (
             <button className="navbar__entry" onClick={() => setIsAuthModalOpen(true)}>Войти</button>

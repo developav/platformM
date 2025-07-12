@@ -21,7 +21,7 @@ const AuthForm = ({ onClose }: { onClose?: () => void }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // если требуется cookie
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       });
 
@@ -65,10 +65,11 @@ const AuthForm = ({ onClose }: { onClose?: () => void }) => {
       }
 
       const data = await response.json();
-      if (data.result === true) {
+      if (data.result === true || data.result === 'true') {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userName', data.name);
-        navigate('/'); // Перенаправление на главную страницу
+        onClose?.();
+        navigate('/');
       } else {
         setErrorMessage('Не удалось зарегистрировать пользователя. Попробуйте еще раз.');
       }
@@ -93,7 +94,7 @@ const AuthForm = ({ onClose }: { onClose?: () => void }) => {
     if (hasErrors) return;
 
     if (isRegister) {
-      register(email, password, name, surname);  // Передаем данные при регистрации
+      register(email, password, name, surname);
     } else {
       login(email, password);
     }
@@ -106,38 +107,12 @@ const AuthForm = ({ onClose }: { onClose?: () => void }) => {
 
         {isRegister && (
           <>
-            <input
-              type="text"
-              placeholder="Имя"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={errors.name ? 'input error' : 'input'}
-            />
-            <input
-              type="text"
-              placeholder="Фамилия"
-              value={surname}
-              onChange={(e) => setSurname(e.target.value)}
-              className={errors.surname ? 'input error' : 'input'}
-            />
+            <input type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} className={errors.name ? 'input error' : 'input'}/>
+            <input type="text" placeholder="Фамилия" value={surname} onChange={(e) => setSurname(e.target.value)} className={errors.surname ? 'input error' : 'input'}/>
           </>
         )}
-
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={errors.email ? 'input error' : 'input'}
-        />
-
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={errors.password ? 'input error' : 'input'}
-        />
+        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className={errors.email ? 'input error' : 'input'}/>
+        <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} className={errors.password ? 'input error' : 'input'}/>
 
         <button onClick={handleSubmit} disabled={loading}>
           {loading ? 'Загрузка...' : isRegister ? 'Зарегистрироваться' : 'Войти'}
