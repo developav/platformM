@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/navbar/Navigation";
 import HeadPage from "./page/HeadPage/HeadPage"
 import MovieDetails from "./components/moveDetails/MoveDetails";
@@ -13,8 +13,8 @@ import {store} from "./store/store"
 function App() {
   return (
     <Provider store={store}>
-    <Router>
-      <Navigation />
+    <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/platformM/' : '/'}>
+    <Navigation />
       <Routes>
         <Route path="/" element={<HeadPage/>} />
         <Route path="/movie/:id" element={<MovieDetails />} />
@@ -23,7 +23,8 @@ function App() {
         <Route path="/auth" element={<AuthForm />} />
       </Routes>
       <Footer />
-    </Router>
+      </BrowserRouter>
+      
     </Provider>
   );
 }
