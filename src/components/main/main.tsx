@@ -148,7 +148,7 @@ const RandomMovie = () => {
                     )}
                 </div>
             </div>
-            <Modal isOpen={isModalOpen} onClose={closeModal} trailerUrl={movie.trailerUrl} />
+            <Modal isOpen={isModalOpen} onClose={closeModal} trailerYouTubeId={movie.trailerYouTubeId} />
         </div>
         
       )}
