@@ -13,7 +13,7 @@ const MovieDetails = () => {
   const { id } = useParams<{ id: string }>(); // Явно указываем тип
 
   // Функция для запроса данных о фильме
-  const fetchMovieDetails = (id) => {
+  const fetchMovieDetails = (id:string) => {
     console.log("Функция fetchMovieDetails вызвана с ID:", id);
     dispatch(setLoading(true));
     dispatch(setError(null));
@@ -135,7 +135,7 @@ const MovieDetails = () => {
                 <span className="home__year">{movieDetails.releaseYear}</span>
                 <span className="home__genre">
                   {movieDetails.genres
-                    ? movieDetails.genres.map((genre) => t(`genres.${genre.toLowerCase()}`)).join(", ")
+                    ? movieDetails.genres.map((genre:string) => t(`genres.${genre.toLowerCase()}`)).join(", ")
                     : "Нет жанров"}
                 </span>
                 <span className="home__runtime">

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTop10Movies, setLoading, setError } from '../../slice/headMovieSlice';
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +52,7 @@ const Top10Movies = () => {
 
       {top10Movies.length > 0 ? (
         <ul className="movie-list">
-          {top10Movies.map((movie: any, index) => (
+          {top10Movies.map((movie: any, index: number) => (
             <li key={movie.id} className="movie-list__item">
               <div className="movie-list__item-count">{index + 1}</div>
               <img

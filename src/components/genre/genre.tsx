@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGenreMovies, setLoading, setError } from '../../slice/headMovieSlice';
@@ -108,8 +108,8 @@ const Genres = () => {
     genre, 
     order: genreOrder.indexOf(genre),
   }))
-  .filter((genreObj) => genreObj.order !== -1)
-  .sort((a, b) => a.order - b.order)
+  // .filter((genreObj) => genreObj.order !== -1)
+  // .sort((a, b) => a.order - b.order)
 
   return (
     <div className="genre-container">
@@ -117,16 +117,16 @@ const Genres = () => {
       {loading && <p>Загрузка жанров...</p>}
       {error && <p className="error-message">Ошибка: {error}</p>}
       <div className="genre-grid">
-        {sortedGenres.slice(0, visibleGenres).map(({genre}) => (
+        {sortedGenres.slice(0, visibleGenres).map(({genre} : {genre:string}) => (
           <div key={genre} className="genre-card" onClick={()=> handleClick(genre)}>
               <img src={genreImages[genre]} alt={genre} className="genre-image" />
               <div className="genre-label">{genreMapping[genre] || genre}</div>
           </div>
         ))}
       </div>
-        {/* {visibleGenres < genreMovies.length && (
+        {visibleGenres < genreMovies.length && (
           <button className='genre-show' onClick={handleShowMore}>Показать еще</button>
-        )} */}
+        )}
     </div>
   );
 };
