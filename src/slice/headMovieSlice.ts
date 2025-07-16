@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { Movie, MovieState } from '../types/movie';
 
-const initialState = {
+const initialState:MovieState = {
   movie: null,
   loading: false,
   movieDetails: null,
@@ -14,29 +15,30 @@ const movieSlice = createSlice({
   name: 'movie',
   initialState,
   reducers: {
-    setMovie: (state, action) => {
+    setMovie(state, action: PayloadAction<Movie>) {
       state.movie = action.payload;
     },
-    setTop10Movies: (state, action) => {
-      state.top10Movies = action.payload;  // Устанавливаем топ-10 фильмов
-    },
-    setGenreMovies: (state, action) => {
-      state.genreMovies = action.payload;
-    },
-    setGenreFilmsCards: (state, action) => {
-      state.genreFilmsCards = action.payload;
-    },
-    setMovieDetails: (state, action) => {
+    setMovieDetails(state, action: PayloadAction<Movie>) {
       state.movieDetails = action.payload;
     },
-    setLoading: (state, action) => {
+    setTop10Movies(state, action: PayloadAction<Movie[]>) {
+      state.top10Movies = action.payload;
+    },
+    setGenreMovies(state, action: PayloadAction<Movie[]>) {
+      state.genreMovies = action.payload;
+    },
+    setGenreFilmsCards(state, action: PayloadAction<Movie[]>) {
+      state.genreFilmsCards = action.payload;
+    },
+    setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
-    setError: (state, action) => {
+    setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
     },
   },
 });
+
 
 export const { setMovie, setLoading, setError, setMovieDetails, setTop10Movies, setGenreMovies, setGenreFilmsCards } = movieSlice.actions;
 

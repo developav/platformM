@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { setMovieDetails, setLoading, setError } from '../../slice/headMovieSlice';
 import { useTranslation } from "react-i18next";
 import '../main/main.scss';
@@ -8,7 +9,7 @@ import './MoveDetails.scss'
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
-  const { movieDetails, loading, error } = useSelector((state) => state.movie);
+  const { movieDetails, loading, error } = useTypedSelector((state) => state.movie);
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>(); // Явно указываем тип
 
@@ -52,8 +53,7 @@ const MovieDetails = () => {
   };
   const handleAddToFavorites = async (e: React.MouseEvent) => {
     e.preventDefault();
-  
-    const movieId = movieDetails.id;
+    const movieId = movieDetails?.id;
     console.log("ID фильма:", movieId);
     if (!movieId) {
       alert("Ошибка: отсутствует корректный ID фильма.");
