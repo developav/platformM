@@ -40,7 +40,7 @@ const Top10Movies = () => {
     fetchTop10Movies();
   }, [fetchTop10Movies]);
 
-  const handleMovieDetailsClick = (movieId: string) => {
+  const handleMovieDetailsClick = (movieId: number) => {
     navigate(`/movie/${movieId}`);
   };
 
