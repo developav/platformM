@@ -26,11 +26,11 @@ export default function Navigation() {
     fetchProfile();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setUserName(null);
-    navigate("/auth");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("isLoggedIn");
+  //   setUserName(null);
+  //   navigate("/auth");
+  // };
   const handleLoginSuccess = () => {
     fetchProfile(); 
     setIsAuthModalOpen(false); // закрыть модалку
