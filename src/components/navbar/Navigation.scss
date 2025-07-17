@@ -138,6 +138,90 @@ $menu-bg: rgba(20, 30, 48, 0.95);
        padding: 12px 52px;
     }
 }
+.mobile-navbar{
+  &__nav{
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  &__button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+}
+// .mobile-navbar__search-wrapper {
+//   position: fixed;
+//   top: 5px;
+//   left: 0;
+//   right: 0;
+//   background-color: #0d1224;
+//   padding: 12px;
+//   z-index: 1000;
+
+//   input {
+//     width: 90%;
+//     margin: 0 auto;
+//     display: block;
+//     padding: 10px;
+//     border-radius: 10px;
+//     border: none;
+//     font-size: 16px;
+//   }
+// }
+.mobile-navbar__search {
+  position: fixed;
+  top: 5px;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  padding: 12px;
+  z-index: 1000;
+
+  &-wrapper {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+
+    input {
+      width: 80%;
+      padding: 15px 40px 15px 36px; // слева и справа под иконки
+      border-radius: 10px;
+      border: none;
+      color: #fff;
+      outline: none;
+      background-color: #393B3C;
+      font-size: 16px;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #888;
+      pointer-events: none;
+    }
+
+    .close-icon {
+      position: absolute;
+      top: 30%;
+      right: 10px;
+      transform: translateY(-50%);
+      font-size: 18px;
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
 
 // Адаптивность
 @media (max-width:1300px) {
@@ -155,13 +239,43 @@ $menu-bg: rgba(20, 30, 48, 0.95);
   }
 }
 @media (max-width: 768px) {
+  .mobile-navbar{
+    &__nav{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+    &__button{
+      background-color: transparent;
+      outline: none;
+      border: none;
+    }
+  }
   .navbar {
     &__links {
       display: none;
     }
-
-    &__burger {
-      display: block;
+    &__custom{
+      display: none;
+    }
+    &__user{
+      display: none;
+    }
+  }
+}
+@media (max-width: 452px) {
+  .mobile-navbar{
+    &__nav{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0px;
+    }
+    &__button{
+      background-color: transparent;
+      outline: none;
+      border: none;
     }
   }
 }
