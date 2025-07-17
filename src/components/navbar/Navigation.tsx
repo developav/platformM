@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthModal from "../../page/ModalAuth/AuthModal";
 import "./Navigation.scss";
 
@@ -7,7 +7,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const fetchProfile = async () => {
     try {
       const response = await fetch("https://cinemaguide.skillbox.cc/profile", {
