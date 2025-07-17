@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.scss';
 
-const AuthForm = ({ onClose }: { onClose?: () => void }) => {
+const AuthForm = ({ onClose, onLoginSuccess }: { onClose?: () => void; onLoginSuccess?: ()=> void}) => {
   const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,6 +34,7 @@ const AuthForm = ({ onClose }: { onClose?: () => void }) => {
       if (data.result === true) {
         console.log('Куки после входа:', document.cookie);
         localStorage.setItem('isLoggedIn', 'true');
+        onLoginSuccess?.();
         onClose?.(); 
         navigate('/'); 
       } else {
@@ -68,6 +69,7 @@ const AuthForm = ({ onClose }: { onClose?: () => void }) => {
       if (data.result === true || data.result === 'true') {
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('userName', data.name);
+        onLoginSuccess?.();
         onClose?.();
         navigate('/');
       } else {

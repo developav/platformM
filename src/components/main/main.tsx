@@ -19,7 +19,9 @@ i18n.use(initReactI18next).init({
             mystery: "mystery",
             horror: "horror",
             thriller: "thriller",
-            romance:"romance"
+            romance:"romance",
+            comedy: "comedy",
+            documentary: "documentary",
           },
         },
       },
@@ -31,7 +33,9 @@ i18n.use(initReactI18next).init({
             mystery: "Фентези",
             horror: "Ужасы",
             thriller: "Триллер",
-            romance:"Роман"
+            romance:"Роман",
+            comedy: "Комедия",
+            documentary: "Документальный",
           },
         },
       },

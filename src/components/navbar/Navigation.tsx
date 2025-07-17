@@ -8,23 +8,21 @@ export default function Navigation() {
   const [userName, setUserName] = useState<string | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch("https://cinemaguide.skillbox.cc/profile", {
-          method: "GET",
-          credentials: "include",
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setUserName(data.surname); 
-        }
-      } catch (err) {
-        console.error("Ошибка загрузки профиля", err);
+  const fetchProfile = async () => {
+    try {
+      const response = await fetch("https://cinemaguide.skillbox.cc/profile", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserName(data.name); 
       }
-    };
-
+    } catch (err) {
+      console.error("Ошибка загрузки профиля", err);
+    }
+  };
+  useEffect(() => {
     fetchProfile();
   }, []);
 
@@ -32,6 +30,10 @@ export default function Navigation() {
     localStorage.removeItem("isLoggedIn");
     setUserName(null);
     navigate("/auth");
+  };
+  const handleLoginSuccess = () => {
+    fetchProfile(); 
+    setIsAuthModalOpen(false); // закрыть модалку
   };
 
   return (
@@ -51,13 +53,13 @@ export default function Navigation() {
 
           {/* Поиск */}
           <div className="navbar__custom">
-            <input className="navbar-custom__input" type="text" placeholder="Поиск" />
+            <input id="input_nav" className="navbar-custom__input" type="text" placeholder="Поиск" />
           </div>
 
           {userName ? (
             <div className="navbar__user">
-              <span className="navbar__username">{userName}</span>
-              {<button className="navbar__entry" onClick={handleLogout}>Выйти</button>}
+              <span className="navbar__user-name">{userName}</span>
+              {/* {<button className="navbar__entry" onClick={handleLogout}>Выйти</button>} */}
             </div>
           ) : (
             <button className="navbar__entry" onClick={() => setIsAuthModalOpen(true)}>Войти</button>
@@ -78,15 +80,8 @@ export default function Navigation() {
           </ul>
         )}
       </nav>
-      {isOpen && (
-  <ul className="navbar__mobile-menu">
-    <li><Link to="/" onClick={() => setIsOpen(false)}>Главная</Link></li>
-    <li><Link to="/movie/genre" onClick={() => setIsOpen(false)}>Жанры</Link></li>
-    <li><Link to="/favorites" onClick={() => setIsOpen(false)}>Избранное</Link></li>
-  </ul>
-)}
 
-{isAuthModalOpen && <AuthModal onClose={() => setIsAuthModalOpen(false)} />}
+{isAuthModalOpen && <AuthModal onClose={() => setIsAuthModalOpen(false)} onLoginSuccess={handleLoginSuccess} />}
     </header>
   );
 }

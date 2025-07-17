@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -29,6 +31,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Play', sans-serif;
   background: 
   linear-gradient(178.73deg, rgba(39, 135, 245, 0.18) 0%, rgba(163, 147, 245, 0.18) 100%),
   linear-gradient(180deg, #000000 0%, rgba(39, 36, 36, 0.7) 100%);
@@ -63,7 +66,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 #root {
-  min-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -75,21 +78,23 @@ button:focus-visible {
 }
 
 @media (max-width:1300px) {
-  #root {
-    min-width: 980px;
+ 
+  .container {
+    width: 980px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
   }
 }
-@media (max-width:1023px) {
-  #root {
-    min-width: 748px;
+@media (max-width:1024px) {
+  
+  .container {
+    width: 700px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  }
+}
+@media (max-width:769px) {
+  .container {
+    width: 375px;
+    margin: 0 auto;
   }
 }
 @media (prefers-color-scheme: light) {
