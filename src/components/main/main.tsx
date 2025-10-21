@@ -119,9 +119,9 @@ const RandomMovie = () => {
                                 <path d="M8.00105 12.1734L3.29875 14.8055L4.34897 9.51997L0.392578 5.86124L5.74394 5.22675L8.00105 0.333374L10.2581 5.22675L15.6095 5.86124L11.6531 9.51997L12.7033 14.8055L8.00105 12.1734Z" fill="white"/>
                             </svg>{movie.tmdbRating} 
                         </div>
-                        <span className='home__year'> {movie.releaseYear} </span>
-                        <span className='home__genre'> {" "} {movie.genres ? movie.genres.map((genre:string) => t(`genres.${genre.toLowerCase()}`)).join(", ") : "Нет жанров"}</span>
-                        <span className='home__runtime'> {formatRuntime(movie.runtime)}</span>
+                        <span className='font-size home__year'> {movie.releaseYear} </span>
+                        <span className='font-size home__genre'> {" "} {movie.genres ? movie.genres.map((genre:string) => t(`genres.${genre.toLowerCase()}`)).join(", ") : "Нет жанров"}</span>
+                        <span className='font-size home__runtime'> {formatRuntime(movie.runtime)}</span>
                     </div>
                     <div className='home__group-title'>
                         <h1 className='home__head-title'> {movie.title}</h1>

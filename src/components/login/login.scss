@@ -1,29 +1,47 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    margin: auto;
+    max-width: 100%;
+    align-items: center;
+    &__logo{
+      background-image: url('../../../public/icon/маруся.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      height: 45px;
+    }
+    &__heading {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+      color: #000000;
+    }
   }
   
   .input {
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #aaa;
     border-radius: 5px;
     outline: none;
   }
-  
+
   .input.error {
-    border-color: red;
+    border: 2px solid red;
   }
   
-  button {
-    padding: 10px;
+  .button__auth {
+    width: 100%;
+    padding: 16px 48px;
     margin-top: 10px;
-    background: #4e6eff;
-    color: white;
+    background: #67A5EB;
+    color: #FFFFFF;
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: 700;
     border: none;
-    border-radius: 5px;
+    border-radius: 28px;
     cursor: pointer;
   }
   
@@ -32,8 +50,11 @@
     text-align: center;
   
     span {
-      color: #4e6eff;
+      color: #000000;
       cursor: pointer;
-      text-decoration: underline;
+      line-height: 24px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
     }
   }

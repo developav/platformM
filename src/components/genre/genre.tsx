@@ -112,22 +112,25 @@ const Genres = () => {
   // .sort((a, b) => a.order - b.order)
 
   return (
-    <div className="genre-container">
-      <h2 className="genre-title">Жанры фильмов</h2>
-      {loading && <p>Загрузка жанров...</p>}
-      {error && <p className="error-message">Ошибка: {error}</p>}
-      <div className="genre-grid">
-        {sortedGenres.slice(0, visibleGenres).map(({genre} : {genre:string}) => (
-          <div key={genre} className="genre-card" onClick={()=> handleClick(genre)}>
-              <img src={genreImages[genre]} alt={genre} className="genre-image" />
-              <div className="genre-label">{genreMapping[genre] || genre}</div>
+    <div className='container'>
+      <div className="genre-container">
+          <h2 className="genre-title">Жанры фильмов</h2>
+          {loading && <p>Загрузка жанров...</p>}
+          {error && <p className="error-message">Ошибка: {error}</p>}
+          <div className="genre-grid">
+            {sortedGenres.slice(0, visibleGenres).map(({genre} : {genre:string}) => (
+              <div key={genre} className="genre-card" onClick={()=> handleClick(genre)}>
+                  <img src={genreImages[genre]} alt={genre} className="genre-image" />
+                  <div className="genre-label">{genreMapping[genre] || genre}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-        {visibleGenres < genreMovies.length && (
-          <button className='genre-show' onClick={handleShowMore}>Показать еще</button>
-        )}
+            {visibleGenres < genreMovies.length && (
+              <button className='genre-show' onClick={handleShowMore}>Показать еще</button>
+            )}
+        </div>
     </div>
+  
   );
 };
 

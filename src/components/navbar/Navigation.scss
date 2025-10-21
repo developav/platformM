@@ -24,7 +24,6 @@ $menu-bg: rgba(20, 30, 48, 0.95);
   }
 
   &__logo {
-    flex: 1.38;
     font-size: 22px;
     font-weight: bold;
     text-decoration: none;
@@ -47,10 +46,10 @@ $menu-bg: rgba(20, 30, 48, 0.95);
   }
 
   &__links {
-    flex: 1.6;
+    max-width: 14%;
     list-style: none;
     display: flex;
-    gap: 38px;
+    gap: 39px;
     margin: 0;
     padding: 0;
 
@@ -72,18 +71,24 @@ $menu-bg: rgba(20, 30, 48, 0.95);
    
   }
   &__custom{
+    max-width: 51%;
     display: flex;
     flex: 4;
   }
   &__entry{
     display: flex;
     flex: 1;
+    padding: 0 3px;
     align-items: flex-end;
+    max-width: 6%;
+    font-size: 23px;
+    color: #fff;
+    background-color: transparent;
     justify-content: flex-end;
+    outline: none;
   }
   &__user {
     display: flex;
-    flex: 1;
     align-items: flex-end;
     justify-content: flex-end;
     &-name{
@@ -262,6 +267,13 @@ $menu-bg: rgba(20, 30, 48, 0.95);
     &__user{
       display: none;
     }
+    &__entry {
+      margin-top: 0;
+      display: flex;
+      flex: 0;
+      align-items: flex-end;
+      justify-content: flex-end;
+  }
   }
 }
 @media (max-width: 452px) {

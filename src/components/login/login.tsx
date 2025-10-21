@@ -105,27 +105,28 @@ const AuthForm = ({ onClose, onLoginSuccess }: { onClose?: () => void; onLoginSu
   return (
     <div className='content'>
       <div className="auth-form">
-        <h2>{isRegister ? 'Регистрация' : 'Вход'}</h2>
-
+        <div className='auth-form__logo'></div>
+        <h2 className='auth-form__heading'>{isRegister ? 'Регистрация' : ' '}</h2>
+        
         {isRegister && (
           <>
             <input type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} className={errors.name ? 'input error' : 'input'}/>
             <input type="text" placeholder="Фамилия" value={surname} onChange={(e) => setSurname(e.target.value)} className={errors.surname ? 'input error' : 'input'}/>
           </>
         )}
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className={errors.email ? 'input error' : 'input'}/>
+        <input type="email" placeholder="Электронная почта" value={email} onChange={(e) => setEmail(e.target.value)} className={errors.email ? 'input error' : 'input'}/>
         <input type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} className={errors.password ? 'input error' : 'input'}/>
 
-        <button onClick={handleSubmit} disabled={loading}>
-          {loading ? 'Загрузка...' : isRegister ? 'Зарегистрироваться' : 'Войти'}
+        <button className='button__auth' onClick={handleSubmit} disabled={loading}>
+          {loading ? 'Загрузка...' : isRegister ? 'Создать аккаунт' : 'Войти'}
         </button>
 
         {errorMessage && <div className="error-message">{errorMessage}</div>}
 
         <p className="switch-mode">
-          {isRegister ? 'Уже есть аккаунт?' : 'Нет аккаунта?'}{' '}
+          {/* {isRegister ? 'Уже есть аккаунт?' : 'Нет аккаунта?'}{' '} */}
           <span onClick={() => setIsRegister(!isRegister)}>
-            {isRegister ? 'Войти' : 'Зарегистрироваться'}
+            {isRegister ? 'У меня есть пароль' : 'Регистрация'}
           </span>
         </p>
       </div>
