@@ -60,7 +60,7 @@ export default function Navigation() {
 
           {userName ? (
             <div className="navbar__user">
-              <span className="navbar__user-name">{userName}</span>
+              <span className="navbar__user-name"><Link to='/favorites'>{userName}</Link></span>
               {/* {<button className="navbar__entry" onClick={handleLogout}>Выйти</button>} */}
             </div>
           ) : (

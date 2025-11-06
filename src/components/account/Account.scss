@@ -1,0 +1,21 @@
+.account {
+    &__heading {
+        font-size: 48px;
+        font-weight: 700;
+        color: #fff;
+    }
+    &__group {
+        display: flex;
+        flex-direction: row;
+        gap: 64px;
+        padding-left: 0;
+        &-link a{
+            font-size: 24px;
+            font-weight: 400;
+            color: #fff;
+        }
+        &-link svg{
+            margin-right: 8px;
+        }
+    }
+}

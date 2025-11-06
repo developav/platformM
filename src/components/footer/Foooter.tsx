@@ -2,7 +2,8 @@ import './Footer.scss'
 
 export default function Footer () {
     return (
-        <div className="footer__container">
+        <div className='container'>
+            <div className="footer__container">
             <ul className="footer__list">
                 <li className="footer__list-item" >
                     <a className="footer__list-item-link" href="">
@@ -38,6 +39,8 @@ export default function Footer () {
                     </a>
                 </li>
             </ul>
+            </div>
         </div>
+       
     )
 }
