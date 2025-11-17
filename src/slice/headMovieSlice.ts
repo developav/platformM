@@ -7,6 +7,7 @@ const initialState:MovieState = {
   movieDetails: null,
   top10Movies: [],  
   genreMovies: [],
+  accountFavorites: [],
   genreFilmsCards: [],
   error: null,
 };
@@ -36,10 +37,13 @@ const movieSlice = createSlice({
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
     },
+    setAccountFavorites(state, action: PayloadAction<Movie[]>) {
+      state.accountFavorites = action.payload;
+    },
   },
 });
 
 
-export const { setMovie, setLoading, setError, setMovieDetails, setTop10Movies, setGenreMovies, setGenreFilmsCards } = movieSlice.actions;
+export const { setMovie, setLoading, setError, setMovieDetails, setTop10Movies, setGenreMovies, setGenreFilmsCards, setAccountFavorites } = movieSlice.actions;
 
 export default movieSlice.reducer;

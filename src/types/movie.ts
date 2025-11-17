@@ -22,6 +22,7 @@ export interface Movie {
     movieDetails: Movie | null;
     top10Movies: Movie[];
     genreMovies: Movie[];
+    accountFavorites: Movie[];
     genreFilmsCards: Movie[];
     loading: boolean;
     error: string | null;

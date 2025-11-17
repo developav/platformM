@@ -1,9 +1,10 @@
 import Account from "../../components/account/Account";
 
+
 const FavoritePage =() => {
     return (
         <div>
-            <Account />
+            { <Account /> }
         </div>
     )
 }
