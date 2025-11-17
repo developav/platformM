@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import SettingsAccount from "./AccountSettings";
 import AccountFavorites from "./AccountFavorites";
 import "./Account.scss"
 const Account = () => {
-   const [showFavorites, setShowFavorites] = useState(false);
+   const [showFavorites, setShowFavorites] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
 
   const handleShowFavorites = () => {
