@@ -1,14 +1,10 @@
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Movie } from '../../types/movie';
 import { setAccountFavorites, setLoading, setError } from '../../slice/headMovieSlice';
 import { useNavigate } from 'react-router-dom';
 import './AccountFavorites.scss';
 
-interface FavoriteMovie {
-  id: number;
-  title: string;
-  posterUrl: string;
-}
 
 const AccountFavorites = () => {
   const dispatch = useDispatch();
@@ -31,7 +27,7 @@ const AccountFavorites = () => {
         if (!response.ok) throw new Error("Ошибка загрузки избранного");
         return response.json();
       })
-      .then((data: FavoriteMovie[]) => {
+      .then((data: Movie[]) => {
         dispatch(setAccountFavorites(data));
       })
       .catch((error) => {
@@ -58,7 +54,7 @@ const AccountFavorites = () => {
 
       {accountFavorites.length > 0 ? (
         <ul className="favorite__movie-list">
-          {accountFavorites.map((movie: FavoriteMovie) => (
+          {accountFavorites.map((movie: Movie) => (
             <li key={movie.id} className="favorite__movie-list-item">
               <img
                 onClick={() => handleMovieDetailsClick(movie.id)}
