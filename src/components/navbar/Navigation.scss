@@ -65,7 +65,9 @@ $menu-bg: rgba(20, 30, 48, 0.95);
       transition: color 0.3s;
 
       &:hover {
-        color: $hover-color;
+        cursor: pointer;
+      border-bottom: 1.5px solid #DC5DFC;
+      padding-bottom: 5px;
       }
     }
    
@@ -91,9 +93,15 @@ $menu-bg: rgba(20, 30, 48, 0.95);
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    &-name{
+    &-name a{
       font-size: 24px;
       line-height: 32px;
+      color: #fff;
+    }
+    &-name a:hover{
+      cursor: pointer;
+      border-bottom: 1.5px solid #DC5DFC;
+      padding-bottom: 5px;
     }
   }
 
@@ -234,6 +242,35 @@ $menu-bg: rgba(20, 30, 48, 0.95);
     &__custom {
       flex: 2;
   }
+  &__links {
+      display: none;
+    }
+    &__custom{
+      display: none;
+    }
+    &__user{
+      display: none;
+    }
+    &__entry {
+      margin-top: 0;
+      display: flex;
+      flex: 0;
+      align-items: flex-end;
+      justify-content: flex-end;
+  }
+  }
+  .mobile-navbar{
+    &__nav{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+    &__button{
+      background-color: transparent;
+      outline: none;
+      border: none;
+    }
   }
 }
 @media (max-width:1023px) {
@@ -273,7 +310,11 @@ $menu-bg: rgba(20, 30, 48, 0.95);
       flex: 0;
       align-items: flex-end;
       justify-content: flex-end;
-  }
+    }
+    &__logo-dot{
+      width: 80px;
+      height: 32px;
+    }
   }
 }
 @media (max-width: 452px) {
@@ -282,7 +323,7 @@ $menu-bg: rgba(20, 30, 48, 0.95);
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 0px;
+      gap: 20px;
     }
     &__button{
       background-color: transparent;

@@ -89,7 +89,7 @@ const SettingsAccount = () => {
                 </div>
                 {error && <p className="error">Ошибка: {error}</p>}
             </div>
-            <button className="logout-btn" onClick={handleLogout}>Выйти из аккаунта</button>
+            <button className="setings__group-logout-btn" onClick={handleLogout}>Выйти из аккаунта</button>
         </div>
     );
 }

@@ -1,6 +1,4 @@
-.content {
-    flex: 1;
-}
+
 .genre{
     &-container {
         color: white;
@@ -16,6 +14,7 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 40px;
         justify-items: center;
+        margin-bottom: 40px;
     }
     &-card {
         width: 100%;
@@ -39,5 +38,19 @@
         background: #000;
         color: white;
         font-weight: bold;
+    }
+    &-show{
+        padding: 18px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #393B3C;
+        border: none;
+        border-radius: 28px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: #67A5EB;
+        }
     }
 }

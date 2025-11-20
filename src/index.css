@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 
+
+
+.content {
+  flex: 1 0 auto; /* растягивает контент */
+}
+
+.footer__container {
+  flex-shrink: 0; /* не даёт футеру подниматься */
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -82,7 +91,9 @@ button:focus-visible {
   .container {
     width: 80%;
     margin: 0 auto;
+    max-height: 100%;
   }
+  
 }
 @media (max-width:1024px) {
   

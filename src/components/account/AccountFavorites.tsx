@@ -52,19 +52,19 @@ const AccountFavorites = () => {
   };
 
   return (
-    <div className="container">
+    <div>
       {loading && <p>Загрузка...</p>}
       {error && <p className="error-message">Ошибка: {error}</p>}
 
       {accountFavorites.length > 0 ? (
-        <ul className="movie-list">
+        <ul className="favorite__movie-list">
           {accountFavorites.map((movie: FavoriteMovie) => (
-            <li key={movie.id} className="movie-list__item">
+            <li key={movie.id} className="favorite__movie-list-item">
               <img
                 onClick={() => handleMovieDetailsClick(movie.id)}
                 src={movie.posterUrl || "/placeholder.jpg"}
                 alt={movie.title}
-                className="movie-list__item-image"
+                className="favorite__movie-list-image"
               />
             </li>
           ))}
