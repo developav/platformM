@@ -51,7 +51,7 @@ const RandomMovie = () => {
   const { movie, loading } = useTypedSelector((state) => state.movie); // Получаем данные из Redux
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [setFavorites] = useState<any[]>([]);
+  const [favorites, setFavorites] = useState<any[]>([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -97,47 +97,55 @@ const RandomMovie = () => {
     navigate(`/movie/${movieId}`); // Переход на страницу с деталями фильма
   };
 
-  useEffect(() => {
-    if (!movie?.id) return;
-    fetch("https://cinemaguide.skillbox.cc/favorites", {
-      method: "GET",
-      credentials: "include",
+ useEffect(() => {
+  if (!movie?.id) return;
+
+  fetch("https://cinemaguide.skillbox.cc/favorites", {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Authorization": "Bearer frontdeveloper",
+    },
+  })
+    .then((res) => res.json())
+    .then((fav) => {
+      setFavorites(fav);
+      const isFav = fav.some((f: any) => String(f.id) === String(movie.id));
+      setIsFavorite(isFav);
     })
-      .then((res) => res.json())
-      .then((fav) => {
-        setFavorites(fav);
-        const isFav = fav.some((f: any) => String(f.id) === String(movie.id));
-        setIsFavorite(isFav);
-      })
-      .catch((err) => console.error("Ошибка избранного:", err));
-  }, [movie]);
+    .catch((err) => console.error("Ошибка избранного:", err));
+}, [movie]);
 
   const handleAddToFavorites = async () => {
-    if (!movie?.id) return;
-    if (isFavorite) return;
+  if (!movie?.id) return;
+  if (isFavorite) return;
 
-    try {
-      const response = await fetch(
-        "https://cinemaguide.skillbox.cc/favorites",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: String(movie.id) }),
-        }
-      );
-
-      if (!response.ok) {
-        const txt = await response.text();
-        throw new Error(txt);
+  try {
+    const response = await fetch(
+      "https://cinemaguide.skillbox.cc/favorites",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer frontdeveloper"
+        },
+        body: JSON.stringify({ id: String(movie.id) }),
       }
+    );
 
-      setIsFavorite(true);
-      setFavorites((prev) => [...prev, movie]);
-    } catch (err) {
-      console.error("Ошибка при добавлении в избранное:", err);
+    if (!response.ok) {
+      const txt = await response.text();
+      throw new Error(txt);
     }
-  };
+
+    setIsFavorite(true);
+    setFavorites((prev) => [...prev, movie]);
+    
+  } catch (err) {
+    console.error("Ошибка при добавлении в избранное:", err);
+  }
+};
 
   const formatRuntime = (minutes: number) => {
     if (!minutes || minutes <= 0) return "Неизвестно";
@@ -227,7 +235,7 @@ const RandomMovie = () => {
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                    >
+                    > <span>{favorites.length}</span>
                       <path
                         d="M16.5 3C19.5376 3 22 5.5 22 9C22 16 14.5 20 12 21.5C9.5 20 2 16 2 9C2 5.5 4.5 3 7.5 3C9.35997 3 11 4 12 5C13 4 14.64 3 16.5 3Z"
                         fill="#B4A9FF"
