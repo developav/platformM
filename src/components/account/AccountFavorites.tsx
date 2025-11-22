@@ -58,7 +58,7 @@ const AccountFavorites = () => {
   })
     .then((response) => {
       if (!response.ok) throw new Error("Не удалось удалить из избранного");
-      dispatch(setAccountFavorites(accountFavorites.filter(m => m.id !== movieId)));
+      dispatch(setAccountFavorites(accountFavorites.filter((m: Movie) => m.id !== movieId)));
     })
     .catch((err) => {
       dispatch(setError(err.message));
