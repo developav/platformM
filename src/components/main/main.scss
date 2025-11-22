@@ -92,12 +92,19 @@
         color: rgba(255, 255, 255, 0.7);
     }
     &__play {
-        background-color: rgba(103, 165, 235, 1);
-        border-radius: 28px;
-        padding: 15px 50px;
-        color: rgba(255, 255, 255, 1);
+        padding: 16px 24px;
         font-size: 18px;
         font-weight: bold;
+        color: #fff;
+        background-color: #393B3C;
+        border: none;
+        border-radius: 28px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: #67A5EB;
+            color: #fff;
+        }
     }
     &__about {
         background-color: rgba(57, 59, 60, 1);
@@ -106,8 +113,15 @@
         color: rgba(255, 255, 255, 1);
         font-size: 18px;
         font-weight: bold;
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: #67A5EB;
+            color: #fff;
+            cursor: pointer;
+        }
     }
     &__favorites {
+        cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -115,8 +129,15 @@
         max-width: 68px;
         padding: 16px 24px;
         background-color: rgba(51, 51, 51, 1);
+        transition: background-color 0.3s ease, border 0.3s ease;
+         &:hover {
+            background-color: #67A5EB;
+            color: #fff;
+            cursor: pointer;
+        }
     }
     &__refresh{
+        cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -124,6 +145,12 @@
         max-width: 68px;
         padding: 16px 24px;
         background-color: rgba(51, 51, 51, 1); 
+        transition: background-color 0.3s ease, border 0.3s ease;
+         &:hover {
+            background-color: #67A5EB;
+            color: #fff;
+            cursor: pointer;
+        }
     }
 
 

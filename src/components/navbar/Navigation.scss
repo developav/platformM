@@ -252,8 +252,9 @@ $menu-bg: rgba(20, 30, 48, 0.95);
       display: none;
     }
     &__entry {
+
       margin-top: 0;
-      display: flex;
+      display: none;
       flex: 0;
       align-items: flex-end;
       justify-content: flex-end;
@@ -303,13 +304,6 @@ $menu-bg: rgba(20, 30, 48, 0.95);
     }
     &__user{
       display: none;
-    }
-    &__entry {
-      margin-top: 0;
-      display: flex;
-      flex: 0;
-      align-items: flex-end;
-      justify-content: flex-end;
     }
     &__logo-dot{
       width: 80px;

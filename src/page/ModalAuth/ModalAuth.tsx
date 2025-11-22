@@ -1,14 +1,16 @@
 // Modal.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import './modal.scss';
 
 interface ModalProps {
   children: React.ReactNode;
   onClose: () => void;
+  isRegistration?: boolean;  
 }
+ 
 
-const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ children, onClose, isRegistration }) => {
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -19,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({ children, onClose }) => {
 
   return ReactDOM.createPortal(
     <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="modal-overlay__content">
+      <div className={`modal-overlay__content ${isRegistration ? "modal--big" : "modal--small"}`}>
         <button className="modal-overlay__close" onClick={onClose}>
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="48" height="48" rx="24" fill="white"/>

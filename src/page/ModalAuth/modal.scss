@@ -11,20 +11,59 @@
     &__content {
       position: relative;
       background: white;
-      padding: 2rem;
+      padding: 64px 40px;
       border-radius: 24px;
       position: relative;
       width: 100%;
-      max-width: 400px;
+      max-width: 356px;
+      height: 450px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     &__close {
       position: absolute;
-      right: -20%;
-      top: -3%;
+      right: -25%;
+      top: -4%;
       background: transparent;
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
     }
+  }
+  .modal-overlay__content {
+  width: 480px;
+  padding: 32px;
+  background: #fff;
+  border-radius: 20px;
+  position: relative;
+  transition: height 0.3s ease, max-height 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Высота модалки при логине */
+.modal--small {
+  height: 370px;  // или auto
+}
+
+/* Высота модалки при регистрации */
+.modal--big {
+  height: 525px;  // увеличенная высота
+}
+  @media (max-width: 768px) {
+    .modal-overlay {
+      &__close {
+      right: -5%;
+      top: 0%;
+      }
+      &__content {
+        padding: 64px 20px 32px 20px;
+      }
+    }
+    .modal--small {
+    height: 420px;
+}.modal--big {
+  height: 575px;  // увеличенная высота
+}
   }

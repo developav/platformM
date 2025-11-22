@@ -4,7 +4,7 @@
     max-width: 100%;
     align-items: center;
     &__logo{
-      background-image: url('../../../public/icon/маруся.png');
+      background-image: url('../../../public/маруся\ black.png');
       background-repeat: no-repeat;
       background-position: center;
       width: 100%;
@@ -57,4 +57,14 @@
       font-weight: 700;
       text-decoration: none;
     }
+  }
+
+  @media (max-width: 768px) {
+    .input {
+    box-sizing: border-box;
+    margin: 10px 0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    outline: none;
+  }
   }

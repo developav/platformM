@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.scss';
 
-const AuthForm = ({ onClose, onLoginSuccess }: { onClose?: () => void; onLoginSuccess?: ()=> void}) => {
+const AuthForm = ({ onClose, onLoginSuccess, onModeChange }: { onClose?: () => void; onLoginSuccess?: ()=> void; onModeChange?: (isRegister: boolean) => void;}) => {
   const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+ 
   const [surname, setSurname] = useState('');
   const [errors, setErrors] = useState({ email: false, password: false, name: false, surname: false });
   const [loading, setLoading] = useState(false);  // Для отслеживания состояния загрузки
@@ -102,11 +103,12 @@ const AuthForm = ({ onClose, onLoginSuccess }: { onClose?: () => void; onLoginSu
     }
   };
 
+
   return (
     <div className='content'>
       <div className="auth-form">
         <div className='auth-form__logo'></div>
-        <h2 className='auth-form__heading'>{isRegister ? 'Регистрация' : ' '}</h2>
+        <h2 className='auth-form__heading'>{isRegister ? 'Регистрация' : ''}</h2>
         
         {isRegister && (
           <>
@@ -125,7 +127,7 @@ const AuthForm = ({ onClose, onLoginSuccess }: { onClose?: () => void; onLoginSu
 
         <p className="switch-mode">
           {/* {isRegister ? 'Уже есть аккаунт?' : 'Нет аккаунта?'}{' '} */}
-          <span onClick={() => setIsRegister(!isRegister)}>
+          <span  onClick={() => {setIsRegister(!isRegister);onModeChange?.(!isRegister);}}>
             {isRegister ? 'У меня есть пароль' : 'Регистрация'}
           </span>
         </p>
