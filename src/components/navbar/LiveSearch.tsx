@@ -74,8 +74,20 @@ const { t } = useTranslation();
         onChange={(e) => setQuery(e.target.value)}
         className="live-search__input"
       />
-
-      {/* {loading && <div className="live-search__loading">Загрузка...</div>} */}
+        {query && (
+            <button
+                type="button"
+                className="live-search__clear"
+                onClick={() => {
+                setQuery("");
+                setMovies([]);
+                }}
+                aria-label="Очистить поиск"
+            >
+                ✕
+            </button>
+            )}
+      {loading && <div className="live-search__loading">Загрузка...</div>}
 
       {movies.length > 0 && (
         <ul className="live-search__list">

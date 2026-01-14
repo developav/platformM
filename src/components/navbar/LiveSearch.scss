@@ -24,7 +24,7 @@
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  width: 92%;
+  width: 91%;
       padding: 10px 40px 12px 49px; // слева и справа под иконки
       border-radius: 10px;
       border: none;
@@ -32,18 +32,22 @@
       outline: none;
       background-color: #393B3C;
       font-size: 18px;
+      background-image: url("../../../public/search.svg");
+      background-repeat: no-repeat;
+      background-position: 3% 45%;
 }
 
 .live-search__list {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 8%;
   right: 0;
+  padding: 8px;
   background: #3a3b3c;
   border-radius: 8px;
   margin-top: 6px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  max-height: 300px;
+  max-height: 452px;
   overflow-y: auto;
   z-index: 10;
 }
@@ -54,6 +58,7 @@
   padding: 8px;
   cursor: pointer;
   align-items: center;
+  transition: background 0.3s ease;
   &-head{
     font-size: 18px;
     font-weight: 700;
@@ -62,7 +67,7 @@
 }
 
 .live-search__item:hover {
-  background: #f3f3f3;
+  background: #0f1d32;
 }
 
 .live-search__item img {
@@ -73,8 +78,43 @@
 }
 
 .live-search__loading {
+    display: none;
   position: absolute;
   right: 10px;
   top: 10px;
   font-size: 12px;
+}
+.live-search__input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.live-search__input {
+  padding-right: 6px; // место под крестик
+}
+
+.live-search__clear {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+
+  width: 20px;
+  height: 20px;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  font-size: 16px;
+  line-height: 1;
+  color: #999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: #000;
+  }
 }
