@@ -1,42 +1,19 @@
-import { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect} from 'react';
+import { useSelector } from 'react-redux';
 import { Movie } from '../../types/movie';
-import { setAccountFavorites, setLoading, setError } from '../../slice/headMovieSlice';
+import { setAccountFavorites, setError } from '../../slice/headMovieSlice';
+import { useFetchAccountFavorites } from '../../hooks/usefetchAccountFavorites';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import './AccountFavorites.scss';
 
 
-const AccountFavorites = () => {
+export const AccountFavorites = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { accountFavorites = [], loading, error } = useSelector((state: any) => state.movie);
 
-  const fetchAccountFavorites = useCallback(() => {
-    dispatch(setLoading(true));
-    dispatch(setError(null));
-
-    fetch("https://cinemaguide.skillbox.cc/favorites", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Authorization": "frontdeveloper",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("Ошибка загрузки избранного");
-        return response.json();
-      })
-      .then((data: Movie[]) => {
-        dispatch(setAccountFavorites(data));
-      })
-      .catch((error) => {
-        dispatch(setError(error.message || "Произошла ошибка"));
-      })
-      .finally(() => {
-        dispatch(setLoading(false));
-      });
-  }, [dispatch]);
+const fetchAccountFavorites = useFetchAccountFavorites();
 
   useEffect(() => {
     fetchAccountFavorites();
@@ -46,8 +23,8 @@ const AccountFavorites = () => {
   const handleMovieDetailsClick = (movieId: number) => {
     navigate(`/movie/${movieId}`);
   };
-
   const handleRemove = (movieId: number) => {
+   
   fetch(`https://cinemaguide.skillbox.cc/favorites/${movieId}`, {
     method: "DELETE",
     credentials: "include",

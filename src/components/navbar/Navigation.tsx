@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthModal from "../../page/ModalAuth/AuthModal";
+import LiveSearch from "./LiveSearch";
 import "./Navigation.scss";
 
 export default function Navigation() {
@@ -54,9 +55,11 @@ export default function Navigation() {
           </ul>
 
           {/* Поиск */}
-          <div className="navbar__custom">
-            <input id="input_nav" className="navbar-custom__input" type="text" placeholder="Поиск" />
-          </div>
+          { <div className="navbar__custom">
+            <LiveSearch />
+            {/* <input id="input_nav" className="navbar-custom__input" type="text" placeholder="Поиск" /> */}
+          </div>}
+           
 
           {userName ? (
             <div className="navbar__user">

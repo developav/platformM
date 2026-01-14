@@ -36,6 +36,13 @@ i18n.use(initReactI18next).init({
           romance: "Роман",
           comedy: "Комедия",
           documentary: "Документальный",
+          history: "Исторический",
+          adventure: "Приключения",
+          crime: "Криминал",
+          fantasy: "Фентези",
+          scifi: "Научпоп",
+          animation: "Мультик",
+          war: "Военный",
         },
       },
     },
@@ -45,6 +52,38 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
 });
 
+interface ReadMoreProps {
+  text: string;
+  limit?: number; // сколько символов показывать
+}
+
+const ReadMore = ({ text, limit = 200 }: ReadMoreProps) => {
+  const [expanded, setExpanded] = useState(false);
+
+  if (!text) return null;
+
+  const isLong = text.length > limit;
+  const displayText = expanded ? text : text.slice(0, limit) + (isLong ? "..." : "");
+
+  return (
+    <span>
+      {displayText}
+      {isLong && (
+        <a className="home__description"
+          onClick={() => setExpanded(!expanded)}
+          style={{
+            color: "#FFFFFF",
+            marginLeft: "6px",
+            cursor: "pointer",
+          }}
+        >
+          {expanded ? "Скрыть" : "Читать далее"}
+        </a>
+      )}
+    </span>
+  );
+};
+
 const RandomMovie = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для модалки
@@ -53,6 +92,7 @@ const RandomMovie = () => {
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState<any[]>([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -205,7 +245,7 @@ const RandomMovie = () => {
               </div>
               <div className="home__group-title">
                 <h1 className="home__head-title"> {movie.title}</h1>
-                <p className="home__description"> {movie.plot}</p>
+                <p className="home__description"> <ReadMore text={movie.plot} limit={250} /></p>
               </div>
               <div className="home__group-button">
                 {movie.trailerUrl && (
