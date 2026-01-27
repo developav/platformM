@@ -11,14 +11,17 @@ $font-bold: 600;
     padding-bottom: 0.5rem;
     color: #FFFFFF;
   }
+  &__list{
+    padding: 0;
+  }
 
   &__list-item {
     display: flex;
-    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
     padding: 0.4rem 0;
     width: 35%;
-    border-bottom: 1px solid $border-color, 30%;
-
     &:last-child {
       border-bottom: none;
     }
@@ -27,15 +30,24 @@ $font-bold: 600;
       flex: 1;
       max-width: fit-content;
       color: #FFFFFF;
+      white-space: nowrap; // текст не переносится
+      margin-right: 8px;
+      font-weight: 500;
     }
     &-dashed {
       width: 56%;
+          padding-top: 10px;
       border-bottom: 1px dashed #FFFFFF;
+      flex-grow: 1; // занимает всё свободное пространство
+      border-bottom: 1px dotted #999;
+      margin: 0 8px; // отступы от label и value
     }
   }
   &__list-item-value {
     flex: 1;
     text-align: right;
     color: #FFFFFF;
+     white-space: nowrap; // текст не переносится
+    flex-shrink: 0; // не сжимается
     }
 }

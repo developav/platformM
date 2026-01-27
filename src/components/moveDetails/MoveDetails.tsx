@@ -4,17 +4,25 @@ import { useParams } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { setMovieDetails, setLoading, setError } from '../../slice/headMovieSlice';
 import { useTranslation } from "react-i18next";
+import Modal from "../../components/modalTrailer/ModalTrailer";
 import '../main/main.scss';
 import './MoveDetails.scss'
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для модалки
   const { movieDetails, loading, error } = useTypedSelector((state) => state.movie);
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const [userData, setUserData] = useState<{ favorites?: string[] }>({});
   const [isFavorite, setIsFavorite] = useState(false);
+ const openModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const yourToken = "frontdeveloper";
 
   // Получение данных пользователя
@@ -140,9 +148,10 @@ const MovieDetails = () => {
 
             <div className="home__group-button">
               {movieDetails.trailerUrl && (
-                <a className="home__play" href={movieDetails.trailerUrl} target="_blank" rel="noopener noreferrer">
+                <a className="home__play" onClick={openModal} target="_blank" rel="noopener noreferrer">
                   Трейлер
                 </a>
+                
               )}
 
               <button
@@ -168,43 +177,31 @@ const MovieDetails = () => {
               <p>Изображение отсутствует</p>
             )}
           </div>
-
+ <Modal
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            trailerYouTubeId={movieDetails.trailerYouTubeId}
+          />
          
         </div>
-         <div className="movie-details">
+          <div className="movie-details">
             <h2 className="movie-details__heading">О фильме</h2>
-            <ul className="movie-details__list">
-              <li className="movie-details__list-item">
-                <span className="movie-details__list-item-label">Язык оригинала</span>
-                <span className="movie-details__list-item-dashed"></span>
-                <span className="movie-details__list-item-label">{movieDetails.language || "Нет описания"}</span>
-              </li>
-              <li className="movie-details__list-item">
-                <span className="movie-details__list-item-label">Бюджет:</span>
-                <span className="movie-details__list-item-dashed"></span>
-                <span className="movie-details__list-item-value">{movieDetails.budget || "Неизвестно"}</span>
-              </li>
-              <li className="movie-details__list-item">
-                <span className="movie-details__list-item-label">Выручка:</span>
-                <span className="movie-details__list-item-dashed"></span>
-                <span className="movie-details__list-item-value">{movieDetails.revenue || "Нет данных"}</span>
-              </li>
-              <li className="movie-details__list-item">
-                <span className="movie-details__list-item-label">Режиссер</span>
-                <span className="movie-details__list-item-dashed"></span>
-                <span className="movie-details__list-item-value">{movieDetails.director || "Неизвестно"}</span>
-              </li>
-              <li className="movie-details__list-item">
-                <span className="movie-details__list-item-label">Продакшен:</span>
-                <span className="movie-details__list-item-dashed"></span>
-                <span className="movie-details__list-item-value">{movieDetails.production || "Нет данных"}</span>
-              </li>
-              <li className="movie-details__list-item">
-                <span className="movie-details__list-item-label">Награды:</span>
-                <span className="movie-details__list-item-dashed"></span>
-                <span className="movie-details__list-item-value">{movieDetails.awardsSummary || "Нет данных"}</span>
-              </li>
-            </ul>
+              <ul className="movie-details__list">
+                {[
+                  { label: "Язык оригинала", value: movieDetails.language },
+                  { label: "Бюджет", value: movieDetails.budget },
+                  { label: "Выручка", value: movieDetails.revenue },
+                  { label: "Режиссер", value: movieDetails.director },
+                  { label: "Продакшен", value: movieDetails.production },
+                  { label: "Награды", value: movieDetails.awardsSummary },
+                ].map((item, index) => (
+                  <li key={index} className="movie-details__list-item">
+                    <span className="movie-details__list-item-label">{item.label}</span>
+                    <span className="movie-details__list-item-dashed"></span>
+                    <span className="movie-details__list-item-value">{item.value || "Неизвестно"}</span>
+                  </li>
+                ))}
+              </ul>
           </div>
       </div>
       </div>

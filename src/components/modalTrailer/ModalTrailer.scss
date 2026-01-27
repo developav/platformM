@@ -12,10 +12,10 @@
   }
   
   .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
+    background: #333;
+    padding: 2px;
+    line-height: 0;
+    width: 100%;
     max-width: 800px;
   }
   
@@ -29,3 +29,5 @@
     color: black;
     cursor: pointer;
   }
+ 
+  

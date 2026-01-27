@@ -16,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, trailerYouTubeId }) => {
         <button className="modal-close" onClick={onClose}>X</button>
         <iframe
   width="100%"
-  height="315"
+  height="538"
   src={`https://www.youtube.com/embed/${trailerYouTubeId}?autoplay=1&enablejsapi=1`}
   frameBorder="0"
   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

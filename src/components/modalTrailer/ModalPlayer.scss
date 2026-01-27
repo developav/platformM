@@ -1,0 +1,34 @@
+.video-player {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+
+  &__video {
+    width: 100%;
+    border-radius: 10px;
+    background: black;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    gap: 8px;
+
+    button {
+      background: #c82020;
+      border: none;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      cursor: pointer;
+    }
+  }
+}
