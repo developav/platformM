@@ -26,7 +26,7 @@
         justify-items: center;
     }
     &-card {
-        width: 100%;
+        width: 70%;
         background: #111;
         border-radius: 12px;
         overflow: hidden;
@@ -37,9 +37,8 @@
             transform: scale(1.03);
           }
         &-img{
-            width: 100%;
-            height: fit-content;
-            object-fit: cover;
+            height: 100%;
+            border-radius: 3%;
         }
     }
 }
